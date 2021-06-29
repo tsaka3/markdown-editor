@@ -13,11 +13,19 @@ const config = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: 'index.js',
-    // publicPath: 'dist/',
+    publicPath: 'dist/',
   },
   devServer: {
-    open: true,
-    host: "localhost",
+    open: false,
+    host: "0.0.0.0",
+    port: 3000,
+    useLocalIp: true,
+    publicPath: '/dist/',
+    hot: true,
+    watchOptions: {
+      aggregateTimeout: 600,
+      poll: 1000
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -49,6 +57,10 @@ const config = {
 
       // Add your rules for custom modules here
       // Learn more about loaders from https://webpack.js.org/loaders/
+      // {
+      //   test: /\.worker\.js$/,
+      //   use: { loader: "worker-loader" },
+      // },
     ],
   },
   resolve: {
